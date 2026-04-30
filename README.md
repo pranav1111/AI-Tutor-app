@@ -7,12 +7,12 @@ A real-time, voice-powered AI tutoring platform. Students learn through natural 
 ### Home Page
 Light theme with a subtle teal gradient, companion cards with colored accent bars, and a recent sessions table.
 
-![Home Page](public/readme/homepage.png)
+![Home Page](public/readme/home.png)
 
 ### Companion Builder
 Centered form to create a custom AI tutor — choose a name, subject, voice, style, and session duration.
 
-![Companion Builder](public/readme/companion-builder.png)
+![Companion Builder](public/readme/Builder.png)
 
 ### Voice Session
 Centered session layout — subject avatar, mute/start controls, and live transcript powered by Vapi.
