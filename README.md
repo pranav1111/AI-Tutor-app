@@ -1,6 +1,6 @@
 # Vocalis AI — Voice Tutoring Platform
 
-A real-time, voice-powered AI tutoring platform. Students learn through natural voice conversations with personalized AI companions — powered by GPT-4, ElevenLabs, and Vapi.
+This is a real-time, voice-powered AI tutoring platform i built as a project. Students learn through natural voice conversations with personalized AI companions — powered by GPT-4, ElevenLabs, and Vapi.
 
 ## Screenshots
 
