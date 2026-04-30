@@ -7,13 +7,13 @@ export const subjects = [
   "economics",
 ];
 
-export const subjectsColors = {
-  science: "#E5D0FF",
-  maths: "#FFDA6E",
-  language: "#BDE7FF",
-  coding: "#FFC8E4",
-  history: "#FFECC8",
-  economics: "#C8FFDF",
+export const subjectsColors: Record<string, string> = {
+  science: "#14b8a6",
+  maths: "#3b82f6",
+  language: "#f59e0b",
+  coding: "#ef4444",
+  history: "#f97316",
+  economics: "#22c55e",
 };
 
 export const voices = {
@@ -21,53 +21,32 @@ export const voices = {
   female: { casual: "ZIlrSGI4jZqobxRKprJz", formal: "sarah" },
 };
 
-export const recentSessions = [
+export const templateCompanions = [
   {
-    id: "1",
+    name: "Lara",
     subject: "science",
-    name: "Neura the Brainy Explorer",
-    topic: "Neural Network of the Brain",
-    duration: 45,
-    color: "#E5D0FF",
-  },
-  {
-    id: "2",
-    subject: "maths",
-    name: "Countsy the Number Wizard",
-    topic: "Derivatives & Integrals",
+    topic: "Introduction to Human Biology",
+    voice: "female",
+    style: "formal",
     duration: 30,
-    color: "#FFDA6E",
+    author: "system",
   },
   {
-    id: "3",
-    subject: "language",
-    name: "Verba the Vocabulary Builder",
-    topic: "English Literature",
-    duration: 30,
-    color: "#BDE7FF",
-  },
-  {
-    id: "4",
-    subject: "coding",
-    name: "Codey the Logic Hacker",
-    topic: "Intro to If-Else Statements",
-    duration: 45,
-    color: "#FFC8E4",
-  },
-  {
-    id: "5",
+    name: "Boris",
     subject: "history",
-    name: "Memo, the Memory Keeper",
-    topic: "World Wars: Causes & Consequences",
-    duration: 15,
-    color: "#FFECC8",
+    topic: "The Rise and Fall of Ancient Rome",
+    voice: "male",
+    style: "casual",
+    duration: 25,
+    author: "system",
   },
   {
-    id: "6",
-    subject: "economics",
-    name: "The Market Maestro",
-    topic: "The Basics of Supply & Demand",
-    duration: 10,
-    color: "#C8FFDF",
+    name: "Suzan",
+    subject: "maths",
+    topic: "Algebra: Equations & Problem Solving",
+    voice: "female",
+    style: "casual",
+    duration: 20,
+    author: "system",
   },
 ];

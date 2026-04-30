@@ -12,8 +12,8 @@ export const getSubjectColor = (subject: string) => {
 };
 
 export const configureAssistant = (voice: string, style: string) => {
-  const voiceId = voices[voice as keyof typeof voices][
-      style as keyof (typeof voices)[keyof typeof voices]
+  const voiceId = voices[voice as keyof typeof voices]?.[
+      style.toLowerCase() as keyof (typeof voices)[keyof typeof voices]
       ] || "sarah";
 
   const vapiAssistant: CreateAssistantDTO = {

@@ -38,34 +38,17 @@ import {
 } from "@/components/ui/input-group"
 import {subjects} from "@/constants";
 import {Textarea} from "@/components/ui/textarea";
-import {values} from "eslint-config-next";
+
 import {createCompanion} from "@/lib/actions/companions.actions";
 import {useRouter} from "next/navigation";
 
 const formSchema = z.object({
-    duration: z
-        .coerce.number()
-        .min(1, "duration is required")
-
-    ,name: z
-        .string()
-        .min(1, "Companion is required")
-
-    ,style: z
-        .string()
-        .min(1, "Style must be at least 20 characters.")
-
-    ,subject: z
-        .string()
-        .min(1, "Subject must be at least 20 characters.")
-
-    ,topic: z
-        .string()
-        .min(1, "Topic must be at least 20 characters.")
-
-    ,voice: z
-        .string()
-        .min(1, "Voice must be at least 20 characters.")
+    name: z.string().min(1, "Companion name is required"),
+    subject: z.string().min(1, "Subject is required"),
+    topic: z.string().min(1, "Topic is required"),
+    voice: z.string().min(1, "Voice is required"),
+    style: z.string().min(1, "Style is required"),
+    duration: z.coerce.number().min(1, "Duration is required"),
 })
 
 const CompanionForm = () => {
@@ -83,13 +66,22 @@ const CompanionForm = () => {
             },
         })
         const onSubmit = async (values: z.infer<typeof formSchema>) => {
-            const companion = await createCompanion(values);
+            try {
+                const companion = await createCompanion(values);
 
-            if(companion) {
-                router.push(`/companions/${companion.id}`)
-            } else {
-                console.log("Failed to Create a Companion")
-                router.push('/');
+                if(companion) {
+                    router.push(`/companions/${companion.id}`)
+                } else {
+                    toast.error("Failed to create a companion. Please try again.");
+                    router.push('/');
+                }
+            } catch (error: any) {
+                if (error?.message?.includes('already exists')) {
+                    toast.error("A companion with this name already exists. Please choose a different name.");
+                } else {
+                    toast.error("Failed to create companion. Please try again.");
+                    console.error(error);
+                }
             }
         }
 

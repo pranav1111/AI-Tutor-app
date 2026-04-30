@@ -1,30 +1,35 @@
-'use client';
+"use client";
 
 import Link from "next/link";
-import {usePathname} from "next/navigation";
-import {cn} from "@/lib/utils";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 const navItems = [
-    { label: 'Home', href: '/' },
-    { label: 'Companions', href: '/companions' },
-    { label: 'My Journey', href: '/my-journey' },
-]
+  { label: "Home", href: "/" },
+  { label: "Companions", href: "/companions" },
+  { label: "My Journey", href: "/my-journey" },
+];
 
 const NavItems = () => {
+  const pathname = usePathname();
+  return (
+    <nav className="flex items-center gap-0.5">
+      {navItems.map(({ label, href }) => (
+        <Link
+          href={href}
+          key={label}
+          className={cn(
+            "px-3 py-1.5 rounded-md text-sm transition-colors",
+            pathname === href
+              ? "text-foreground font-medium"
+              : "text-muted-foreground hover:text-foreground"
+          )}
+        >
+          {label}
+        </Link>
+      ))}
+    </nav>
+  );
+};
 
-    const pathname = usePathname();
-    return (
-        <nav className="flex items-center gap-4">
-            {navItems.map(({label, href}) => (
-                <Link href={href}
-                      key={label}
-                      className={cn(pathname === href && 'text-primary font-semibold')}
-                >
-                      {label}
-                </Link>
-            ))}
-        </nav>
-    )
-}
-
-export default NavItems
+export default NavItems;

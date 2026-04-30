@@ -1,41 +1,58 @@
 export const dynamic = "force-dynamic";
 
-import React from 'react'
 import CompanionCard from "@/components/CompanionCard";
 import CompanionsList from "@/components/CompanionsList";
-import CTA from "@/components/CTA";
-import {recentSessions} from "@/constants";
-import {getAllCompanions, getRecentSessions} from "@/lib/actions/companions.actions";
-import {getSubjectColor} from "@/lib/utils";
+import Link from "next/link";
+import {
+  getAllCompanions,
+  getRecentSessions,
+  seedTemplateCompanions,
+} from "@/lib/actions/companions.actions";
+import { getSubjectColor } from "@/lib/utils";
 
 const Page = async () => {
+  await seedTemplateCompanions();
 
-    const companions = await getAllCompanions({ limit: 3 });
-    const recentSessionCompanions = await getRecentSessions(10);
+  const companions = await getAllCompanions({ limit: 6 });
+  const recentSessionCompanions = await getRecentSessions(10);
 
   return (
     <main>
-      <h1>Popular Companions</h1>
-      <section className="home-section">
-          {companions.map((companion) => (
-              <CompanionCard
-                  key={companion.id}
-                  {...companion}
-                  color={getSubjectColor(companion.subject)}
-              />
-          ))}
-
+      {/* Hero */}
+      <section className="flex items-end justify-between gap-4 max-sm:flex-col max-sm:items-start">
+        <div>
+          <h1 className="text-3xl max-sm:text-2xl">Your AI Tutors</h1>
+          <p className="text-muted-foreground text-sm mt-1.5">
+            Start a voice session or create a new companion.
+          </p>
+        </div>
+        <Link href="/companions/new" className="btn-primary text-xs shrink-0">
+          + New companion
+        </Link>
       </section>
-      <section className="home-section">
-          <CompanionsList
-              title="Recently Completed Sessions"
-              companions={recentSessionCompanions}
-              classNames="w-2/3 mx-lg:w-full"
+
+      {/* Companions */}
+      <section className="companions-grid">
+        {companions.map((companion: any) => (
+          <CompanionCard
+            key={companion.id}
+            {...companion}
+            color={getSubjectColor(companion.subject)}
           />
-          <CTA />
+        ))}
       </section>
-    </main>
-  )
-}
 
-export default Page
+      {/* Recent sessions */}
+      {recentSessionCompanions.length > 0 && (
+        <section>
+          <CompanionsList
+            title="Recent Sessions"
+            companions={recentSessionCompanions}
+          />
+        </section>
+      )}
+    </main>
+  );
+};
+
+export default Page;
