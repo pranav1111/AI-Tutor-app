@@ -17,7 +17,7 @@ Centered form to create a custom AI tutor — choose a name, subject, voice, sty
 ### Voice Session
 Centered session layout — subject avatar, mute/start controls, and live transcript powered by Vapi.
 
-![Voice Session](public/readme/session.png)
+![Voice Session](public/readme/speaking.png)
 
 ## Tech Stack
 
